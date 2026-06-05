@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">🌸 Iris.AI — Flower Classification Engine</h1>
+  <h1 align="center">🌸 IrisIQ — Flower Classification Engine</h1>
   <p align="center">
     <strong>A portfolio-grade, production-ready AI-powered Iris Flower Classification Application</strong>
   </p>

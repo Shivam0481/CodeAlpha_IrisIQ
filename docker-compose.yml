@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  iris-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iris-classification-app
+    ports:
+      - "8080:8080"
+    environment:
+      - RUST_LOG=info
+      - DATABASE_URL=postgres://iris_user:supersecretpassword@postgres:5432/iris_db
+      - MODEL_PATH=resources/model.onnx
+      - METADATA_PATH=resources/model_metadata.json
+      - PORT=8080
+    volumes:
+      - iris-uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: iris-postgres
+    environment:
+      - POSTGRES_USER=iris_user
+      - POSTGRES_PASSWORD=supersecretpassword
+      - POSTGRES_DB=iris_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U iris_user -d iris_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  iris-uploads:
+  postgres-data:

@@ -12,7 +12,7 @@
 
 ## 📋 Overview
 
-Iris.AI is a full-stack AI application that predicts Iris flower species (**Setosa**, **Versicolor**, **Virginica**) from sepal and petal measurements. It features:
+IrisIQ is a full-stack AI application that predicts Iris flower species (**Setosa**, **Versicolor**, **Virginica**) from sepal and petal measurements. It features:
 
 - A **Python ML pipeline** that trains a Random Forest Classifier and exports it to ONNX format
 - A **Rust backend** (Actix-Web) that loads the ONNX model for native inference with sub-millisecond latency
